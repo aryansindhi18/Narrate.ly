@@ -9,8 +9,8 @@ export const auth = createMiddleware(async (c, next) => {
   try{
     const response = await verify(token,c.env.JWT_SECRET)
     if(response.userId){
+        c.set("userId",response.userId);
         await next();
-        return c.set("userId",response.id);
       }
     else{
         return c.json({msg:"unauthorized !response.userId"},403)
@@ -19,6 +19,5 @@ export const auth = createMiddleware(async (c, next) => {
   catch(e){
     return c.json({msg:"unauthorized",error:e})
   }
-  
   
 })
