@@ -46,10 +46,12 @@ export function Avatar({name/*,size=32*/}:{name:String,size?:number}){
     //         {name[0] || "U"}
     //     </span>
     // </div>
-    return <div className=" rounded-full bg-slate-200 h-12 w-12 mt-1 mr-2 flex justify-center items-center">
+    return <div className=" flex justify-center flex-col ">
+    <div className=" rounded-full bg-slate-200 h-12 w-12  elative inline-flex items-center justify-center">
     <div className=" h-full text-xl flex flex-col justify-center">
         {String(name[0])}
     </div>
+</div>
 </div>
     
 }
