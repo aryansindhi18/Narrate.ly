@@ -46,7 +46,7 @@ router.post(`/signup`, async (c) => {
 
     // return c.json({token:"jwt token will be returned..."})
     const jwt = await sign({userId:user.id},c.env.JWT_SECRET)
-    return c.json({token:jwt})
+    return c.json({token:jwt,name:user.name})
   }
   catch(e){
     console.log(`error in sign up: ${e}`);
@@ -77,7 +77,7 @@ router.post(`/signin`,async (c)=>{
       return c.json({msg:`user not found`},403)
     }
     const jwt = await sign({userId:user?.id},c.env.JWT_SECRET)
-    return c.json({token:jwt})
+    return c.json({token:jwt,name:user.name})
   // }
   
 })
@@ -149,17 +149,31 @@ router.put(`/blog`,async (c)=>{
 })
 
 router.get(`/get/:id`,async (c)=>{
+  console.log('hello')
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate())
+  console.log('prisma')
   const id = c.req.param('id');
-  const body = await c.req.json();
+  // const body = await c.req.json() || {};
+  // console.log(`body: ${body}`)
   try{
     const post = await prisma.post.findFirst({
+      select:{
+        content:true,
+        title:true,
+        id:true,
+        author:{
+          select:{
+            name:true
+          }
+        }
+      },
       where:{
         id
       }
     })
+    console.log(post)
     
     return c.json({msg:'Post fetched succesfully',
       post: post
@@ -178,7 +192,18 @@ router.get(`/blog/bulk`,async (c)=>{
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate())
   try{
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany({
+      select:{
+        content:true,
+        title:true,
+        id:true,
+        author:{
+          select:{
+            name:true
+          }
+        }
+      }
+    });
     return c.json({
       msg:'success',
       posts: posts
