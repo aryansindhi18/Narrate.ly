@@ -40,12 +40,17 @@ export function BlogCard({id,authorName,title,content,publishedDate}:BlogCardPro
 }
 
 
-export function Avatar({name,size=32}:{name:String,size?:number}){
-    return <div className={`relative inline-flex items-center justify-center size-[${size}px] overflow-hidden bg-gray-300 rounded-full `}>
-        <span className={`${size==6?'text-sm':'text-lg'} text-gray-600 `}>
-            {name[0] || "U"}
-        </span>
+export function Avatar({name/*,size=32*/}:{name:String,size?:number}){
+    // return <div className={`relative inline-flex items-center justify-center size-[${size}px] overflow-hidden bg-gray-300 rounded-full `}>
+    //     <span className={`${size==6?'text-sm':'text-lg'} text-gray-600 `}>
+    //         {name[0] || "U"}
+    //     </span>
+    // </div>
+    return <div className=" rounded-full bg-slate-200 h-12 w-12 mt-1 mr-2 flex justify-center items-center">
+    <div className=" h-full text-xl flex flex-col justify-center">
+        {String(name[0])}
     </div>
+</div>
     
 }
 
