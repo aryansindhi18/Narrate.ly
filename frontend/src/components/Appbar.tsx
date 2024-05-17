@@ -21,7 +21,7 @@ export function Appbar(){
             </div>
             <div className='flex justify-center flex-col'>
                 
-                <Avatar name={name} size={10}/>
+                <Avatar name={name} size={46}/>
             </div>
         </div>
     </div>

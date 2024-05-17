@@ -23,7 +23,7 @@ export function FullBlog({blog}:{blog:BlogType }){
                     </div>
                     <div className="flex w-full">
                         <div className=" pr-4 flex justify-center flex-col">
-                            <Avatar name={blog.author.name} size={10}/>
+                            <Avatar name={blog.author.name} size={46}/>
                         </div>
                         <div>
                             <div className=" text-xl font-bold">

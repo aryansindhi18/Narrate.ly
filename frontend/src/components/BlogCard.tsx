@@ -12,7 +12,7 @@ export function BlogCard({id,authorName,title,content,publishedDate}:BlogCardPro
      cursor-pointer">
         <div className=" flex">
             <div className=" flex justify-center flex-col">
-                <Avatar name={authorName}/>
+                <Avatar name={authorName} size={46}/>
             </div>
             <div className=" font-extralight text-[#252525] pl-2 text-sm flex justify-center flex-col">
                 {authorName}
@@ -40,9 +40,11 @@ export function BlogCard({id,authorName,title,content,publishedDate}:BlogCardPro
 }
 
 
-export function Avatar({name,size=6}:{name:String,size?:number}){
-    return <div className={`relative inline-flex items-center justify-center w-${size} h-${size} overflow-hidden bg-gray-300 rounded-full `}>
-        <span className={`${size==6?'text-sm':'text-lg'} text-gray-600 `}>{name[0] || "U"}</span>
+export function Avatar({name,size=32}:{name:String,size?:number}){
+    return <div className={`relative inline-flex items-center justify-center size-[${size}px] overflow-hidden bg-gray-300 rounded-full `}>
+        <span className={`${size==6?'text-sm':'text-lg'} text-gray-600 `}>
+            {name[0] || "U"}
+        </span>
     </div>
     
 }
